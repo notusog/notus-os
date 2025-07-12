@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Upload, FileText, Video, Mic, Brain, Download } from 'lucide-react'
-import { useToast } from '@/hooks/use-toast'
 
 interface Insight {
   id: string
@@ -20,7 +19,6 @@ interface Insight {
 }
 
 export default function InsightExtractor() {
-  const { toast } = useToast()
   const [file, setFile] = useState<File | null>(null)
   const [text, setText] = useState('')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -31,10 +29,10 @@ export default function InsightExtractor() {
     const selectedFile = e.target.files?.[0]
     if (selectedFile) {
       setFile(selectedFile)
-      toast({
-        title: "File uploaded",
-        description: `${selectedFile.name} has been selected for processing.`,
-      })
+      // toast({
+      //   title: "File uploaded",
+      //   description: `${selectedFile.name} has been selected for processing.`,
+      // })
     }
   }
 
@@ -44,11 +42,11 @@ export default function InsightExtractor() {
 
   const processContent = async () => {
     if (!file && !text.trim()) {
-      toast({
-        title: "No content",
-        description: "Please upload a file or enter text to process.",
-        variant: "destructive",
-      })
+      // toast({
+      //   title: "No content",
+      //   description: "Please upload a file or enter text to process.",
+      //   variant: "destructive",
+      // })
       return
     }
 
@@ -87,16 +85,16 @@ export default function InsightExtractor() {
       ]
 
       setInsights(mockInsights)
-      toast({
-        title: "Insights extracted!",
-        description: `Found ${mockInsights.length} valuable insights from your content.`,
-      })
+      // toast({
+      //   title: "Insights extracted!",
+      //   description: `Found ${mockInsights.length} valuable insights from your content.`,
+      // })
     } catch (error) {
-      toast({
-        title: "Processing failed",
-        description: "There was an error processing your content. Please try again.",
-        variant: "destructive",
-      })
+      // toast({
+      //   title: "Processing failed",
+      //   description: "There was an error processing your content. Please try again.",
+      //   variant: "destructive",
+      // })
     } finally {
       setIsProcessing(false)
     }
